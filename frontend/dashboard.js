@@ -1,7 +1,7 @@
-const apiBase = 'https://your-backend.onrender.com';  // <-- yahan apna backend URL
+const API_BASE = 'https://mygame-ag53.onrender.com'; // <-- CHANGE THIS
 
 async function loadUser() {
-    const res = await fetch(`${apiBase}/api/user`, { credentials: 'include' });
+    const res = await fetch(`${API_BASE}/api/user`, { credentials: 'include' });
     const data = await res.json();
     if (!data.loggedIn) {
         window.location.href = '/';
@@ -15,7 +15,7 @@ async function loadUser() {
 }
 
 async function loadStatus() {
-    const res = await fetch(`${apiBase}/api/bot/status`, { credentials: 'include' });
+    const res = await fetch(`${API_BASE}/api/bot/status`, { credentials: 'include' });
     const data = await res.json();
     const statusEl = document.getElementById('botStatus');
     if (data.running) {
@@ -28,7 +28,7 @@ async function loadStatus() {
 }
 
 async function loadStats() {
-    const res = await fetch(`${apiBase}/api/stats`);
+    const res = await fetch(`${API_BASE}/api/stats`);
     const data = await res.json();
     document.getElementById('globalCount').textContent = data.runningCount;
 }
@@ -40,7 +40,7 @@ document.getElementById('configForm').addEventListener('submit', async (e) => {
     const cmd_channel = document.getElementById('cmd_channel').value;
     const pray_channel = document.getElementById('pray_channel').value;
     const pray_target = document.getElementById('pray_target').value;
-    const res = await fetch(`${apiBase}/api/config`, {
+    const res = await fetch(`${API_BASE}/api/config`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -55,7 +55,7 @@ document.getElementById('configForm').addEventListener('submit', async (e) => {
 });
 
 document.getElementById('startBtn').addEventListener('click', async () => {
-    const res = await fetch(`${apiBase}/api/bot/start`, { method: 'POST', credentials: 'include' });
+    const res = await fetch(`${API_BASE}/api/bot/start`, { method: 'POST', credentials: 'include' });
     const data = await res.json();
     if (data.success) {
         showMessage('✅ Bot started', 'success');
@@ -67,7 +67,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('stopBtn').addEventListener('click', async () => {
-    const res = await fetch(`${apiBase}/api/bot/stop`, { method: 'POST', credentials: 'include' });
+    const res = await fetch(`${API_BASE}/api/bot/stop`, { method: 'POST', credentials: 'include' });
     const data = await res.json();
     if (data.success) {
         showMessage('⏹️ Bot stopped', 'success');
@@ -79,7 +79,7 @@ document.getElementById('stopBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('logoutBtn').addEventListener('click', async () => {
-    await fetch(`${apiBase}/api/logout`, { method: 'POST', credentials: 'include' });
+    await fetch(`${API_BASE}/api/logout`, { method: 'POST', credentials: 'include' });
     window.location.href = '/';
 });
 
