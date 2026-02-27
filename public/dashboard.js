@@ -101,3 +101,6 @@ loadUser();
 loadStatus();
 loadStats();
 setInterval(loadStats, 5000);
+
+// public/dashboard.js
+const apiBase = 'https://mygame-ag53.onrender.com';  // apna backend URL yahan daalein
